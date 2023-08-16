@@ -1,10 +1,17 @@
 #include "cap_parser.h"
+#include <netinet/if_ether.h>
+#include <netinet/ip.h>
+#include <netinet/tcp.h>
+#include <netinet/udp.h>
 #include <spdlog/spdlog.h>
+
+#define MAC_ADDR_LEN 20
+#define ETHER_HEADER_LEN sizeof(ether_header)
 
 CapParser::CapParser(const std::string& filename) {
     char errbuf[PCAP_ERRBUF_SIZE];
-    pcapHandler_ = std::shared_ptr<pcap_t>(pcap_open_offline(filename.c_str(), errbuf), pcap_close);
-    if (pcapHandle == nullptr) {
+    pCapHandler_ = std::shared_ptr<pcap_t>(pcap_open_offline(filename.c_str(), errbuf), pcap_close);
+    if (pCapHandler_ == nullptr) {
         SPDLOG_ERROR("Error opening file: {}", errbuf);
     }
 }
@@ -12,12 +19,12 @@ CapParser::CapParser(const std::string& filename) {
 void CapParser::processPackages() {
     struct pcap_pkthdr header;
     const u_char* packet;
-    while((packet = pcap_next(pcapHandler_.get(), &header)) != NULL) {
+    while((packet = pcap_next(pCapHandler_.get(), &header)) != NULL) {
         processHeaders(packet);
     }
 }
 
-void CapParser::processHeaders(const u_char* package) {
+void CapParser::processHeaders(const u_char* packet) {
     //解析源MAC地址和目的MAC地址
     struct ether_header* eth_header = (struct ether_header*)packet;
     const u_char* src_mac = eth_header->ether_shost;

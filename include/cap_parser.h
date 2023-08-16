@@ -8,6 +8,7 @@
 #ifndef CAP_PARSER_H
 #define CAP_PARSER_H
 
+#include <iostream>
 #include <memory>
 #include <string>
 #include <pcap.h>
@@ -17,7 +18,7 @@ public:
     CapParser(const std::string& filename);
     void processPackages();
 private:
-    void processHeaders(const u_char* package);
+    void processHeaders(const u_char* packet);
 private:
     std::shared_ptr<pcap_t> pCapHandler_;
 };

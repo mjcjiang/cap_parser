@@ -8,8 +8,11 @@ set(CMAKE_BUILD_TYPE Debug)
 ############################################################
 include_directories(deps/json-3.11.2/single_include)
 include_directories(deps/spdlog-1.11.0/include)
+include_directories(deps/libpcap-latest/include)
 
 include_directories(include)
+
+execute_process( COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/deps/libpcap-latest/lib lib)
 
 file(COPY ${CMAKE_SOURCE_DIR}/files DESTINATION apps)
 set(LIBRARY_OUTPUT_PATH "${PROJECT_BINARY_DIR}/lib")

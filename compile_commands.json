@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/hjiang/cap_parser/build/src",
+  "command": "/usr/bin/c++  -I/home/hjiang/cap_parser/deps/json-3.11.2/single_include -I/home/hjiang/cap_parser/deps/spdlog-1.11.0/include -I/home/hjiang/cap_parser/deps/libpcap-latest/include -I/home/hjiang/cap_parser/include -g -std=gnu++11 -o CMakeFiles/src_lib.dir/cap_parser.cc.o -c /home/hjiang/cap_parser/src/cap_parser.cc",
+  "file": "/home/hjiang/cap_parser/src/cap_parser.cc"
+},
+{
+  "directory": "/home/hjiang/cap_parser/build/apps",
+  "command": "/usr/bin/c++  -I/home/hjiang/cap_parser/deps/json-3.11.2/single_include -I/home/hjiang/cap_parser/deps/spdlog-1.11.0/include -I/home/hjiang/cap_parser/deps/libpcap-latest/include -I/home/hjiang/cap_parser/include -g -std=gnu++11 -o CMakeFiles/test_cap_parser.dir/test_cap_parser.cc.o -c /home/hjiang/cap_parser/apps/test_cap_parser.cc",
+  "file": "/home/hjiang/cap_parser/apps/test_cap_parser.cc"
+}
+]
